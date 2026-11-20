@@ -234,3 +234,9 @@ h1,h2,h3,.pf-name,.step-t,.partner-t,.eng-t{color:var(--heading)}
 .co-table a.ext{color:var(--dark);text-underline-offset:3px}
 .co-table a.ext::after{content:"↗";font-size:.85em;margin-left:.3em;text-decoration:none;display:inline-block}
 @media (max-width:640px){.ft-sns{margin-left:0;width:100%}}
+
+/* 年表の年が「2025年1月」まで収まるよう、年の列を少し広げる */
+.history li{grid-template-columns:7.5em 1fr}
+@media (max-width:640px){
+  .history li{grid-template-columns:6.5em 1fr}
+}
