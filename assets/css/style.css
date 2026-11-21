@@ -91,17 +91,26 @@ h1,h2,h3,.pf-name,.step-t,.partner-t,.eng-t{color:var(--heading)}
 .partner-t{font-weight:700;font-size:18px}
 .partner-t::before{content:"";display:block;width:20px;height:2px;background:var(--accent);margin-bottom:16px}
 .partner-s{font-size:14px;color:var(--ink-2);margin-top:8px;line-height:1.8}
-/* position */
-.table-wrap{margin-top:48px}
-.pos-table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.7}
-.pos-table th,.pos-table td{padding:20px 18px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
-.pos-table thead th{font-size:13px;color:var(--mute);font-weight:500;border-bottom:2px solid var(--dark)}
-.pos-table thead th.us{background:var(--dark);color:var(--on-dark);font-weight:700;font-size:15px}
-.pos-table tbody th{font-weight:700;white-space:nowrap;width:9em}
-.pos-table td.us{background:var(--accent-tint);font-weight:700;color:var(--ink);border-left:2px solid var(--accent);border-right:2px solid var(--accent)}
-.pos-table tbody tr:last-child td.us{border-bottom:2px solid var(--accent)}
+/* position：1つの比較表。当社列だけ淡い差し色で控えめに示す */
+.pos-board{margin-top:48px}
+.table-hint{display:none}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.pos-table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:15px;line-height:1.65;font-feature-settings:"palt" 0}
+.pos-table th,.pos-table td{padding:16px 18px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.pos-table thead th{font-size:13px;color:var(--ink-2);font-weight:500;border-bottom:2px solid var(--dark);background:var(--bg)}
+.pos-table thead th.us{background:var(--accent-tint);color:var(--accent);font-weight:700;font-size:15px;box-shadow:inset 3px 0 0 var(--accent)}
+.pos-table .pos-col-k{width:7.5em}.pos-table tbody th{font-weight:700;white-space:nowrap;color:var(--heading);background:var(--bg)}
+.pos-table thead th:first-child,.pos-table tbody th{position:sticky;left:0;z-index:1;border-right:1px solid var(--line)}
+.pos-table thead th:first-child{z-index:2}
+.pos-table td.us{background:var(--accent-tint);color:var(--ink);font-weight:500;box-shadow:inset 3px 0 0 var(--accent)}
 .pos-table td{color:var(--ink-2)}
+.pos-table .th-note{display:block;font-size:11px;font-weight:500;color:var(--mute);margin-top:2px;letter-spacing:0}
 .pos-note{margin-top:32px}
+@media (min-width:641px){
+  /* 広い画面では読点で折り返し、語の途中（統合 など）で切らない */
+  .pos-table{word-break:keep-all}
+}
+
 /* engagement */
 .eng-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
 .eng{border:1px solid var(--dark);padding:36px 32px}
@@ -174,15 +183,12 @@ h1,h2,h3,.pf-name,.step-t,.partner-t,.eng-t{color:var(--heading)}
   .step:not(:last-child)::after{top:auto;bottom:-27px;right:auto;left:4px;transform:rotate(135deg)}
   .partner-list{grid-template-columns:1fr}
   .partner{padding:24px 20px}
-  /* 比較表：観点ごとのカードに組み替え、当社を先頭で強調 */
-  .pos-table thead{display:none}
-  .pos-table,.pos-table tbody,.pos-table tr,.pos-table th,.pos-table td{display:block;width:100%}
-  .pos-table tr{border-top:2px solid var(--dark);padding:16px 0 8px}
-  .pos-table tbody th{font-size:17px;padding:0 0 10px;border:0;width:auto}
-  .pos-table td{padding:10px 12px;border:0;border-top:1px solid var(--line);font-size:14px}
-  .pos-table td::before{content:attr(data-label);display:block;font-size:11.5px;color:var(--mute);font-weight:500}
-  .pos-table td.us{border:2px solid var(--accent)!important;margin-bottom:4px}
-  .pos-table td.us::before{color:var(--accent);font-weight:700}
+  /* 比較表は1表のまま。観点列を固定して横に動かす */
+  .table-hint{display:block;font-size:13px;color:var(--mute);margin:0 0 10px}
+  .pos-table{min-width:44rem;font-size:13.5px}
+  .pos-table .pos-col-k{width:5.5em}
+  .pos-table th,.pos-table td{padding:12px 14px}
+  .pos-table thead th:first-child,.pos-table tbody th{box-shadow:6px 0 8px -6px rgba(31,61,43,.18)}
   .eng-list{grid-template-columns:1fr}
   .eng{padding:28px 22px}
   .eng-t{font-size:18px}
