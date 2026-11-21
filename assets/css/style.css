@@ -208,7 +208,10 @@ h1,h2,h3,.pf-name,.step-t,.partner-t,.eng-t{color:var(--heading)}
 }
 
 /* 本番サイト用の追加スタイル（design-a1 に上乗せ） */
-.logo-img{width:32px;height:auto;display:block}
+.logo-img{height:40px;width:auto;display:block}
+.ft-logo-wrap{flex-basis:100%;margin-bottom:4px}
+.ft-logo{height:32px;width:auto;display:block}
+@media (max-width:640px){.logo-img{height:30px}.ft-logo{height:28px}}
 .photo{margin:0}
 .photo img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;background:var(--bg-sub)}
 .sns{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
