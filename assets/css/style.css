@@ -243,3 +243,62 @@ h1,h2,h3,.pf-name,.step-t,.partner-t,.eng-t{color:var(--heading)}
 @media (max-width:640px){
   .history li{grid-template-columns:6.5em 1fr}
 }
+
+/* 数字の桁幅を固定し、カウント中に帯が揺れないようにする */
+.num-v{font-variant-numeric:tabular-nums;font-feature-settings:"tnum";display:inline-block}
+
+/* JSが動くときだけ、登場前の状態を付ける（無効時は最初から見える） */
+html.js .fv-company,
+html.js .fv-product,
+html.js .fv-lead,
+html.js .fv-actions,
+html.js .fv-name{
+  opacity:0;
+  transform:translateY(12px);
+}
+html.js .fv-product{transform:translateY(16px)}
+html.js.is-ready .fv-company,
+html.js.is-ready .fv-product,
+html.js.is-ready .fv-lead,
+html.js.is-ready .fv-actions,
+html.js.is-ready .fv-name{
+  opacity:1;
+  transform:none;
+  transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);
+}
+html.js.is-ready .fv-company{transition-delay:0s}
+html.js.is-ready .fv-product{transition-delay:.1s;transition-duration:.9s}
+html.js.is-ready .fv-lead{transition-delay:.22s}
+html.js.is-ready .fv-actions{transition-delay:.32s}
+html.js.is-ready .fv-name{transition-delay:.4s}
+
+html.js .reveal{
+  opacity:0;
+  transform:translateY(14px);
+}
+html.js .reveal.is-in{
+  opacity:1;
+  transform:none;
+  transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  html.js .fv-company,
+  html.js .fv-product,
+  html.js .fv-lead,
+  html.js .fv-actions,
+  html.js .fv-name,
+  html.js.is-ready .fv-company,
+  html.js.is-ready .fv-product,
+  html.js.is-ready .fv-lead,
+  html.js.is-ready .fv-actions,
+  html.js.is-ready .fv-name,
+  html.js .reveal,
+  html.js .reveal.is-in{
+    opacity:1!important;
+    transform:none!important;
+    transition:none!important;
+    animation:none!important;
+  }
+}
